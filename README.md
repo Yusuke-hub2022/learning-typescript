@@ -1,2 +1,2 @@
 # Learning Typescript
-Just only for my learning.
+Just only for my learning...
