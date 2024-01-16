@@ -6,6 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 describe("Test DisplayText", () => {
     it("renders without crashing", () => {
         const { baseElement } = render(<DisplayText />)
+        console.log(baseElement.innerHTML)
         expect(baseElement).toBeInTheDocument()
     })
 
