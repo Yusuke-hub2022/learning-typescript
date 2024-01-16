@@ -10,6 +10,11 @@ describe("Test DisplayText", () => {
         expect(baseElement).toBeInTheDocument()
     })
 
+    it("matches snapshot", () => {
+        const { baseElement } = render(<DisplayText />)
+        expect(baseElement).toMatchSnapshot()
+    })
+
     it("receive input text", () => {
         const testuser = 'testuser'
         const { getByTestId } = render(<DisplayText />)

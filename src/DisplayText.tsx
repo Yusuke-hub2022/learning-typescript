@@ -19,6 +19,7 @@ const DisplayText = () => {
             <div><input data-testid="user-input" value={txt} onChange={onChangeTxt} /></div>
             <div><button data-testid="input-submit" onClick={onClickShowMsg}>Show Message</button></div>
             <div><label data-testid="final-msg">{msg}</label></div>
+            <div>this is just a test entry</div>
         </form>
     )
 }
