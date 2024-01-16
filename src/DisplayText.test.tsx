@@ -18,4 +18,18 @@ describe("Test DisplayText", () => {
         expect(input).toBeInTheDocument()
         expect(input).toHaveValue(testuser)
     })
+
+    it("shows welcome message", () => {
+        const testuser = 'testuser'
+        const msg = `Welcome to React testing, ${testuser}`
+        const { getByTestId } = render(<DisplayText />)
+        const input = getByTestId('user-input')
+        const label = getByTestId('final-msg')
+        fireEvent.change(input, {target: {value: testuser}})
+        const button = getByTestId('input-submit')
+        fireEvent.click(button)
+
+        expect(label).toBeInTheDocument()
+        expect(label.innerHTML).toBe(msg)
+    })
 })
