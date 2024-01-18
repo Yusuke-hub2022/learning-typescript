@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { useDispatch } from 'react-redux';
+//import { useDispatch } from 'react-redux';
 import store from './store/AppState';
 //import { update } from './store/userSlice';
 import UserDisplay from './UserDisplay';
+import PostDisplay from './PostDisplay';
 
 function App() {
   const [userid, setUserid] = useState(0)
-  const dispach = useDispatch();
+  //const dispach = useDispatch();
+  const [postid, setPostid] = useState(0)
 
   const onChangeUserId = async (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log('userid', e.target.value)
@@ -34,17 +36,40 @@ function App() {
           city: usr.address.city
         }
       })
+    }
+  }
 
-      //dispach(updateUser())
+  const onChangePostId = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const postIdFromInput = e.target.value ? Number(e.target.value) : 0
+    setPostid(postIdFromInput)
+
+    const postResponse = await fetch('https://jsonplaceholder.typicode.com/posts/' + postIdFromInput)
+    if (postResponse.ok) {
+      const post = await postResponse.json()
+      console.log('post', post)
+      store.dispatch({
+        type: 'post/update',
+        payload: {
+          id: post.id,
+          title: post.title,
+          body: post.body
+        }
+      })
     }
   }
 
   return (
     <div className="App">
       <header className="App-header">
+
         <label>user id</label>
         <input value={userid} onChange={onChangeUserId} />
         <UserDisplay />
+        <p></p>
+        <label>post id</label>
+        <input value={postid} onChange={onChangePostId} />
+        <PostDisplay />
+
 
       {/* 初期画面
         <img src={logo} className="App-logo" alt="logo" />

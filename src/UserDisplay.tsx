@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { User } from "./store/userSlice";
 
 const UserDisplay = () => {
-    const user = useSelector((state: any) => state ? state.user : null)
+    const user = useSelector((state: AppState) => state ? state.user : null)
     console.log('user', user)
 
     if (!user) {
